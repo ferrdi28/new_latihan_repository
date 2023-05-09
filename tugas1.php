@@ -78,7 +78,7 @@
                                 <label for="fsTahun">Tahun Daftar</label>
                             </div>
 
-                            <input type="submit" class="btn btn-success mt-3 col-12" value="Daftar">
+                            <input type="submit" class="btn btn-success mt-3 col-12" value="Daftar" name="submit">
                         </form>
                     </div>
                     <div class="card-footer text-center">
