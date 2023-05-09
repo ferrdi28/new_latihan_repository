@@ -8,66 +8,102 @@
 
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="bootstrap-5.0.2-dist/css/bootstrap.min.css">
+    <style>
+        body{
+            background-color: skyblue;
+        }
 
-    <title>Hello, world!</title>
+    </style>
+
+    <title>Form Pendaftaran</title>
+
 </head>
-
 <body>
     <br>
     <br>
     <!-- container -->
     <div class="container mt-3">
-         <!-- row -->
+        <!-- row -->
         <div class="row justify-content-md-center">
+            <!-- col -->
             <div class="col-6">
+                <!-- card -->
                 <div class="card">
+                    <!-- card header -->
                     <div class="card-header" align="center">
                         <h2>Form Pendaftaran</h2>
                     </div>
                     <div class="card-body">
-                        <!-- Ini akan berisi halaman form-->
-                        <div class="form-floating mb-1">
-                            <input type="text" class="form-control" id="fiNama" placeholder="name@example.com">
-                            <label for="fiNama">Nama</label>
-                        </div>
-                        <div class="form-floating mb-1">
-                            <input type="email" class="form-control" id="fiEmail" placeholder="name@example.com">
-                            <label for="fiEmail">Email</label>
-                        </div>
-                        <div class="form-floating">
-                            <textarea class="form-control" placeholder="Leave a comment here"
-                                id="floatingTextarea"></textarea>
-                            <label for="floatingTextarea">Alamat</label>
-                        </div>
+                        <form action="" method="post">
+                            <!-- Ini akan berisi halaman form-->
+                            <div class="form-floating mb-1">
+                                <input type="text" name="nama" class="form-control" id="fiNama"
+                                    placeholder="name@example.com" Required>
+                                <label for="fiNama">Nama</label>
+                            </div>
+                            <div class="form-floating mb-1">
+                                <input type="email" name="email" class="form-control" id="fiEmail"
+                                    placeholder="name@example.com" required>
+                                <label for="fiEmail">Email</label>
+                            </div>
+                            <div class="form-floating">
+                                <textarea class="form-control" name="alamat" placeholder="Leave a comment here"
+                                    id="floatingTextarea" Required></textarea>
+                                <label for="floatingTextarea">Alamat</label>
+                            </div>
 
-                        <div class="form-floating mt-2">
-                            <select class="form-select" id="floatingSelect" aria-label="Floating label select example">
-                                <option selected disabled>Pilih</option>
-                                <option value="jwd">Junior Web Developer</option>
-                                <option value="dm">Digital Marketing</option>
-                                <option value="cc">Content Creator</option>
-                                <option value="dmm">Desainer Multimedia Muda</option>
-                            </select>
-                            <label for="floatingSelect">Program Pelatihan</label>
-                        </div>
+                            <div class="form-floating mt-2">
+                                <select class="form-select" name="jurusan" id="floatingSelect"
+                                    aria-label="Floating label select example">
+                                    <option selected disabled>Pilih</option>
+                                    <option value="jwd">Junior Web Developer</option>
+                                    <option value="dm">Digital Marketing</option>
+                                    <option value="cc">Content Creator</option>
+                                    <option value="dmm">Desainer Multimedia Muda</option>
+                                </select>
+                                <label for="floatingSelect">Program Pelatihan</label>
+                            </div>
 
-                        <div class="form-floating mt-2">
-                            <select class="form-select" id="fsTahun" aria-label="Floating label select example">
-                                <option selected disabled>Pilih Tahun</option>
-                                <?php
+                            <div class="form-floating mt-2">
+                                <select class="form-select" name="tahun" id="fsTahun"
+                                    aria-label="Floating label select example">
+                                    <option selected disabled>Pilih Tahun</option>
+                                    <?php
                                   for($a=2000;$a<=2023;$a++):?>
-                                  <option value="<?= $a;?>">
-                                    <?= $a;?>
-                                  </option>
-                                <?php endfor;?>
-                            </select>
-                            <label for="fsTahun">Tahun Daftar</label>
-                        </div>
+                                    <option value="<?= $a;?>">
+                                        <?= $a;?>
+                                    </option>
+                                    <?php endfor;?>
+                                </select>
+                                <label for="fsTahun">Tahun Daftar</label>
+                            </div>
 
-                        <input type="submit" class="btn btn-success mt-3 col-12" value="Daftar">
+                            <input type="submit" class="btn btn-success mt-3 col-12" value="Daftar">
+                        </form>
                     </div>
                     <div class="card-footer text-center">
-                      <p><b>Copyright @2023<b></p>
+                        <?php if(isset($_POST['submit'])): ?>
+                            <div class="table-responsive">
+                            <table class="table">
+                                <thead class="table-light">
+                                    <th>NAMA</th>
+                                    <th>EMAIL</th>
+                                    <th>ALAMAT</th>
+                                    <th>PROGRAM</th>
+                                    <th>TAHUN</th>
+                                </thead>
+                                <tbody>
+                                <tr>
+                                        <td><?php echo $_POST['nama']; ?></td>
+                                        <td><?php echo $_POST['email']; ?></td>
+                                        <td><?php echo $_POST['alamat']; ?></td>
+                                        <td><?php echo $_POST['jurusan']; ?></td>
+                                        <td><?php echo $_POST['tahun']; ?></td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                        <?php endif;?>
                     </div>
                 </div>
             </div>
