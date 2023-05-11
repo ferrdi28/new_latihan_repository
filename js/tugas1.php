@@ -116,6 +116,22 @@
     </script>
     <script>
     $(document).ready(function() {
+        getData();
+        function getData() {
+            $.ajax({
+                type: "GET",
+                url: "get_data.php",
+                beforeSend: function(result){
+                    $(".spinner-border").show()
+                },
+                success: function(result) {
+                    $(".spinner-border").hide(1000)
+                    $("tbody").html(result);
+                    // $("table").hide();
+                    // $(".card-footer").append(result);
+                }
+            })
+        }
         // event ketika form di submit
         $("form").submit(function(event) {
             event.preventDefault();
