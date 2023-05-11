@@ -38,20 +38,41 @@
                             <!-- Ini akan berisi halaman form-->
                             <div class="form-floating mb-1">
                                 <input type="text" name="nama" class="form-control" id="fiNama"
-                                    placeholder="name@example.com" Required>
+                                    placeholder="name@example.com" required>
                                 <label for="fiNama">Nama</label>
                             </div>
+                            <br>
+                            <div class="form-floating mt-2">
+                                Jenis Kelamin
+                                <hr>
+                                <div class="form-check">
+                                    <input class="form-check-input" type="radio" name="gender"
+                                        id="gender1" value="pria">
+                                    <label class="form-check-label" for="gender">
+                                        Pria
+                                    </label>
+                                </div>
+                                <div class="form-check">
+                                    <input class="form-check-input" type="radio" name="gender"
+                                        id="gender2" value="wanita">
+                                    <label class="form-check-label" for="gender">
+                                        Wanita
+                                    </label>
+                                </div>
+                            </div>
+                            <br>
                             <div class="form-floating mb-1">
                                 <input type="email" name="email" class="form-control" id="fiEmail"
                                     placeholder="name@example.com" required>
                                 <label for="fiEmail">Email</label>
                             </div>
+                            <br>
                             <div class="form-floating">
                                 <textarea class="form-control" name="alamat" placeholder="Leave a comment here"
                                     id="floatingTextarea" Required></textarea>
                                 <label for="floatingTextarea">Alamat</label>
                             </div>
-
+                            <br>
                             <div class="form-floating mt-2">
                                 <select class="form-select" name="jurusan" id="floatingSelect"
                                     aria-label="Floating label select example">
@@ -63,7 +84,7 @@
                                 </select>
                                 <label for="floatingSelect">Program Pelatihan</label>
                             </div>
-
+                            <br>
                             <div class="form-floating mt-2">
                                 <select class="form-select" name="tahun" id="fsTahun"
                                     aria-label="Floating label select example">
@@ -90,6 +111,7 @@
                                 <thead>
                                     <tr>
                                         <th>NAMA</th>
+                                        <th>GENDER</th>
                                         <th>EMAIL</th>
                                         <th>ALAMAT</th>
                                         <th>PROGRAM</th>
@@ -116,12 +138,14 @@
     </script>
     <script>
     $(document).ready(function() {
+        // menampilkan hasil harus di reload / refresh dulu
         getData();
+
         function getData() {
             $.ajax({
                 type: "GET",
                 url: "get_data.php",
-                beforeSend: function(result){
+                beforeSend: function(result) {
                     $(".spinner-border").show()
                 },
                 success: function(result) {
@@ -137,12 +161,14 @@
             event.preventDefault();
             // console.log("Form telah di submit");
             var nama = $("#fiNama").val();
+            var gender = $(".form-check-input:checked").val();
             var email = $("#fiEmail").val();
             var alamat = $("#floatingTextarea").val();
             var program = $("#floatingSelect").val();
             var tahun = $("#fsTahun").val();
             var formData = {
                 nama: nama,
+                gender: gender,
                 email: email,
                 alamat: alamat,
                 program: program,
@@ -152,10 +178,12 @@
                 type: "POST",
                 url: "process.php",
                 data: formData,
-                beforeSend: function(result){
+                beforeSend: function(result) {
                     $(".spinner-border").show()
                 },
                 success: function(result) {
+                    // menampilkan hasil tanpa di reload / refresh
+                    getData();
                     $(".spinner-border").hide(1000)
                     $("tbody").append(result);
                     $("#formulir")[0].reset()
@@ -176,5 +204,3 @@
 </body>
 
 </html>
-
-

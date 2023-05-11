@@ -8,6 +8,7 @@ $decodeData = json_decode($ambilData, true);
 
 $data = array(
     "nama" => $_POST['nama'],
+    "gender" => $_POST['gender'],
     "email" => $_POST['email'],
     "alamat" => $_POST['alamat'],
     "program" => $_POST['program'],

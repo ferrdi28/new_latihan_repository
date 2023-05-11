@@ -1,7 +1,16 @@
+<?php
+$file = "my_data.json";
+$ambilData = file_get_contents($file);
+$decodeData = json_decode($ambilData, true);
+?>
+<?php foreach($decodeData as $data) : ?>
+
 <tr>
-     <td>Nama</td>
-     <td>Email</td>
-     <td>Alamat</td>
-     <td>Program</td>
-     <td>Tahun</td>
+     <td><?= $data['nama'];?></td>
+     <td><?= $data['gender'];?></td>
+     <td><?= $data['email'];?></td>
+     <td><?= $data['alamat'];?></td>
+     <td><?= $data['program'];?></td>
+     <td><?= $data['tahun'];?></td>
 </tr>
+<?php endforeach; ?>
